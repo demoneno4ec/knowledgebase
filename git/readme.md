@@ -1,4 +1,13 @@
 **tools** - всякий инструментарий
 
-### Пока не придумал куда сохранять ссылки на всякие мануалы и т.д., пусть будет тут
-1. [Заполняем README.md](http://webdesign.ru.net/article/pravila-oformleniya-fayla-readmemd-na-github.html)
+### Внешние источники
+1. [Заполняем README.md](https://github.com/adam-p/Markdown-here/wiki/Markdown-Cheatsheet#links)
+
+
+#### Навигация
+
+1. [git](../git/)
+    1. first item
+    2. sub first item one
+        1. sub first item one
+2. [mysql](../mysql/)
