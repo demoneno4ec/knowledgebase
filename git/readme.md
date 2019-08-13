@@ -5,9 +5,8 @@
 
 
 #### Навигация
-
 1. [git](../git/)
-    1. first item
+    1. [Next Steps, Credits, Feedback, License](#next-steps)
     2. sub first item one
         1. sub first item one
 2. [mysql](../mysql/)
