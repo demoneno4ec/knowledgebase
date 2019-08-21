@@ -14,9 +14,12 @@ php artisan make:model models/NAME -mcr
 1. ***-m*** - Создать миграцию
 3. ***-с*** - Создать контролер
 3. ***-r*** - Объявить контролер REST
+3. ***-f*** - создать фабрику для тестов
+3. ***-a*** - аналог -mcrf
 
 #### Навигация
-1. [git](../git/)
-2. [mysql](../mysql/)
-2. [laravel](../laravel/)
-    1. [artisan](artisan/)
+1. [git](../../../git/)
+2. [mysql](../../../mysql/)
+3. [php](../../)
+    1. [laravel](../)
+        1. artisan

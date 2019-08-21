@@ -36,5 +36,6 @@ php artisan optimize
 #### Навигация
 1. [git](../../git/)
 2. [mysql](../../mysql/)
-2. [laravel](../)
-    1. [artisan](artisan/)
+3. [php](../)
+    1. laravel
+        1. [artisan](artisan/)
