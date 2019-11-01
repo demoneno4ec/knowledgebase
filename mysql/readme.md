@@ -21,6 +21,9 @@ GRANT ALL PRIVILEGES ON `db_name`.`table_name` TO 'user_name'@'localhost' IDENTI
 1. ***password*** - пароль пользователя, указывается, только если пользователь не ыбыл создан ранее
 
 
+mysql -u username -p database_name < file.sql
+mysqldump -u username -p databasename tableName > path/example.sql
+
 #### Навигация
 1. [git](../git/)
 2. mysql
