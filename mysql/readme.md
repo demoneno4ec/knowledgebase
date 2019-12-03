@@ -30,18 +30,18 @@ grant all privileges on `{{db_name}}`.`{{table_name}}` to '{{user_name}}'@'local
 ### Сделать бэкап базы данных
 
 ```bash
+which mysqldump
+```
+```bash
 mysqldump -u {{user_name}} -p {{db_name}} {{table_name}} > {{path}}/{{example.sql}}
 ```
 Сначала необходимо проверить что есть утилита mysqldump
-```bash
-which mysqldump
-```
-|variable            | description                                                                               |
-| :--------------    | -----:                                                                                    |
-| ***db_name***      | **Имя базы данных**                                                                       |
-| ***table_name***   | **Имя таблицы**, <br/> если необходимо назначить для всех существующих, тогда не указывать|
-| ***path***         | **Желаемая папка**, <br/> для бэкапа бд                                                   |
-| ***example.sql***  | **наименование файла дампа**                                                              |
+
+1. ***db_name*** - Имя базы данных
+2. ***table_name*** - Имя таблицы
+3. ***user_name*** - Имя пользователя
+4. ***path*** - Путь до файла
+5. ***example.sql*** - наименование файла дампа
 
 ### Залить бэкап базы данных
 
