@@ -1,0 +1,25 @@
+Снимаем дамп базы данных
+1. mysqldump -u login -p'PASS' db_name > dump.sql
+
+находим вхождения строки find_string и выводим количество вхождений
+2. find ./dump.sql -type f -print0 | xargs -0 grep -io "find"| wc -l
+
+создаем резервную копию дампа
+3. cp dump.sql ../
+
+Проводим замену слову
+4.  sed -i '' -e "s|find|new string|g; s|FIND|NEW STRING|g" dump.sql
+
+Проверяем что нет вхождение
+5. find ./dump.sql -type f -print0 | xargs -0 grep -io "find"| wc -l
+Должен дать 0
+
+Заливаем дам в базу данных
+6. mysql -u login -p'PASS' db_name < dump.sql;
+
+Снимаем новый дамп бд
+7. mysqldump -u login -p'PASS' db_name > dump_new.sql
+
+Проверяем отсутствие вхождений старой строки
+8. find ./dump_new.sql -type f -print0 | xargs -0 grep -nirsl "find"| wc -l
+Должно быть 0
