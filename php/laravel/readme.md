@@ -10,7 +10,7 @@ composer require barryvdh/laravel-ide-helper
 ```bash
 composer require doctrine/dbal
 ```
-3. Зарегестрировать пакет в laravel config/app.php
+3. Зарегестрировать пакет в laravel config/app.php (laravel < 5.5)
 ```php
 Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 ```
@@ -30,6 +30,5 @@ php artisan ide-helper:models
 ```bash
 php artisan optimize
 ```
-
 
 #### [Навигация](../../)
