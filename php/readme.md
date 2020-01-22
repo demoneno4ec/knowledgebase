@@ -1,11 +1,3 @@
-# php
+# [php](https://www.php.net/manual/ru/)
 
-[manual](https://www.php.net/manual/ru/)
-
-#### Навигация
-1. [git](../git/)
-2. [mysql](../mysql/)
-3. [bash](../bash/)
-4. php
-    1. [laravel](laravel/)
-        1. [artisan](laravel/artisan/)
+#### [Навигация](../)

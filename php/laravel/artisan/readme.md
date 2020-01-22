@@ -3,11 +3,11 @@
 ### Команды
 
 ### Создание модели 
-```console 
-php artisan make:model models/NAME -mcr
+```bash
+php artisan make:model {{folder}}/{{name}} -mcrf
 ```
-1. ***folder*** - Папка в которой нужно создать, здесь app/models
-1. ***NAME*** - Наименование модели
+1. ***folder*** - Папка в которой нужно создать, здесь app/folder
+1. ***name*** - Наименование модели
 
 Ключи
 
@@ -17,10 +17,4 @@ php artisan make:model models/NAME -mcr
 3. ***-f*** - создать фабрику для тестов
 3. ***-a*** - аналог -mcrf
 
-#### Навигация
-1. [git](../../../git/)
-2. [mysql](../../../mysql/)
-3. [bash](../../../bash)
-4. [php](../../)
-    1. [laravel](../)
-        1. artisan
+#### [Навигация](../../../)

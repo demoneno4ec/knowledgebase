@@ -1,15 +1,13 @@
-# laravel
-
-[manual](https://laravel.com/docs)
+# [laravel](https://laravel.com/docs)
 
 ### Установка ide-helper
 
 1. Устанавливаем пакет ide-helper composer
-```composer
+```bash
 composer require barryvdh/laravel-ide-helper
 ```
 2. Установка пакет ide-helper composer (необходим для описания в уже созданных моделях)
-```composer
+```bash
 composer require doctrine/dbal
 ```
 3. Зарегестрировать пакет в laravel config/app.php
@@ -17,26 +15,21 @@ composer require doctrine/dbal
 Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 ```
 4. Очищаем кэш
-```console
+```bash
 php artisan clear-compiled
 ```
 5. Создаем ide-helper
-```console
+```bash
 php artisan ide-helper:generate
 ```
 6. Документируем уже созданные модели
-```console
+```bash
 php artisan ide-helper:models
 ```
 7. Оптимизируем 
-```console
+```bash
 php artisan optimize
 ```
 
-#### Навигация
-1. [git](../../git/)
-2. [mysql](../../mysql/)
-3. [bash](../../bash)
-4. [php](../)
-    1. laravel
-        1. [artisan](artisan/)
+
+#### [Навигация](../../)
