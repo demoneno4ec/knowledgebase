@@ -24,6 +24,7 @@ GRANT ALL PRIVILEGES ON `db_name`.`table_name` TO 'user_name'@'localhost' IDENTI
 #### Навигация
 1. [git](../git/)
 2. mysql
-3. [php](../php/)
+3. [bash](../bash)
+4. [php](../php/)
     1. [laravel](../php/laravel/)
         1. [artisan](../php/laravel/artisan/)

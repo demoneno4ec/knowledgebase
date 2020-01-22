@@ -5,6 +5,7 @@
 #### Навигация
 1. [git](../git/)
 2. [mysql](../mysql/)
-3. php
+3. [bash](../bash/)
+4. php
     1. [laravel](laravel/)
         1. [artisan](laravel/artisan/)

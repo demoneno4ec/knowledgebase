@@ -20,6 +20,7 @@ php artisan make:model models/NAME -mcr
 #### Навигация
 1. [git](../../../git/)
 2. [mysql](../../../mysql/)
-3. [php](../../)
+3. [bash](../../../bash)
+4. [php](../../)
     1. [laravel](../)
         1. artisan
