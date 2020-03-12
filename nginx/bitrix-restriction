@@ -1,0 +1,18 @@
+# Deny all attempts to access hidden files such as .htaccess, .htpasswd, .DS_Store (Mac).
+# Keep logging the requests to parse later (or to pass to firewall utilities such as fail2ban)
+
+# исключает из выборки корневые папки local and bitrix
+# а так же папку .thumbs любой вложенности
+location ~ ^(?!\/(bitrix|local)).*?\/(\.(?!thumbs)) {
+        deny all;
+}
+
+# Deny access to any files with a .php extension in the uploads directory
+# Works in sub-directory installs and also in multisite network
+# Keep logging the requests to parse later (or to pass to firewall utilities such as fail2ban)
+location ~* /(?:upload|vendor)/.*\.php$ {
+        deny all;
+}
+location ~* /(envoy.blade.php|composer.lock|composer.json|docker-compose.yml|example.env|readme.md|example.htaccess|supervisor_busPositionServer.conf|bower.json|codeception.yml|Gulpfile.js|npm-shrinkwrap.json|package.json|webpack.config.js)$ {
+        deny all;
+}

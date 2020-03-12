@@ -31,4 +31,7 @@ php artisan ide-helper:models
 php artisan optimize
 ```
 
+### laravel-debugbar
+"barryvdh/laravel-debugbar"
+
 #### [Навигация](../../)
