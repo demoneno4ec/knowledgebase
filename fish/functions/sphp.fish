@@ -17,5 +17,6 @@ function sphp --description "dismod another version php, and start version php o
 	end
 
 	sudo a2enmod php"$phpVersion"
+	sudo update-alternatives --set php /usr/bin/php"$phpVersion"
 	sudo systemctl restart apache2.service
 end
