@@ -1,68 +1,75 @@
 import sys
 import os
-import types
-from termcolor import colored, cprint
+from functools import partial
+from termcolor import cprint
 
-##calbacks
-def fileChangeProjectMark(line):
-    return [line.replace('#PROJECT_NAME#', project)]
+error = partial(cprint, color='white', on_color='on_red')
+info = partial(cprint, color='green')
 
-def dockerComposePreparation(line):
+def docker_compose_preparation(line):
+    conformity_table = {
+        '#PLACE_NGINX_VOLUME#': './templates/docker-compose/volumes/nginx_volume',
+        '#PLACE_NEW_MICROSERVICE#': './templates/docker-compose/container',
+    }
+
     lines = []
+    clean_line = line.strip()
 
-    if ('#PLACE_NGINX_VOLUME#' in line):
-        with open('./templates/docker-compose/volumes/nginx_volume', 'r') as file:
-            for line in file:
-                lines.append(line)
-    elif('#PLACE_NEW_MICROSERVICE#' in line):
-        with open('./templates/docker-compose/container', 'r') as file:
-            for line in file:
-                lines.append(line)
+    if clean_line in conformity_table:
+        with open(conformity_table[clean_line], 'r') as f:
+            for x in f.readlines():
+                lines.append(x)
     else:
         lines.append(line)
+
     return lines
 
-## functions
-def fileChangeAndMoveWithCallbackChange(fromPath, toPath, callback):
+def file_change_and_move_with_callback_change(from_path, to_path, callback):
     lines = []
-    # Parse the file into lines
-    with open(fromPath, 'r') as file:
-        for line in file:
-            if(callable(callback)):
-                lines += callback(line)
 
-    # Write them back to the file
-    with open(toPath, 'w') as file:
-        file.writelines(lines)
+    with open(from_path,  'r') as f:
+       for x in f.readlines():
+           if callable(callback):
+               lines += callback(x)
+           else:
+               lines.append(x)
 
-error = lambda x: cprint(x, 'white', 'on_red')
-info = lambda x: cprint(x, 'green')
+    with open(to_path, 'w') as f:
+        f.writelines([x for x in lines])
 
-try:
-    project = sys.argv[1]
-    info(project + ' - название проекта')
-except IndexError:
-    error("Название проекта обязательно передайте по шаблону:")
-    print("python3 createMicroserviceContext.py project")
-    exit()
+def main():
+    try:
+        project = sys.argv[1]
+        info(project + ' - название проекта')
+    except IndexError:
+        error("Название проекта обязательно передайте по шаблону:")
+        print("python3 createMicroserviceContext.py project")
+        exit()
+        return
 
-fileChangeAndMoveWithCallbackChange('./docker-compose.yml', './templates/docker-compose/docker-compose.yml', dockerComposePreparation)
+    project = str(project)
 
-configs = [
-    {
-        'from': './templates/php-fpm/Dockerfile',
-        'to' : './php-fpm-' + project + '/Dockerfile'
-    },
-    {
-        'from': './templates/nginx/project.conf',
-        'to' : './nginx/' + project + '.conf'
-    },
-    {
-        'from': './templates/docker-compose/docker-compose.yml',
-        'to' : './docker-compose.yml'
-    },
-]
+    def file_change_project_mark(line):
+        return [line.replace('#PROJECT_NAME#', project)]
 
-for config in configs:
-    if (os.path.isfile(config['from'])):
-        fileChangeAndMoveWithCallbackChange(config['from'], config['to'], fileChangeProjectMark)
+    file_change_and_move_with_callback_change(
+        './docker-compose.yml',
+        './templates/docker-compose/docker-compose.yml',
+        docker_compose_preparation,
+    )
+
+    configs = filter(lambda x: os.path.isfile(x[0]), (
+        ('./templates/php-fpm/Dockerfile', './php-fpm-' + project + '/Dockerfile'),
+        ('./templates/nginx/project.conf', './nginx/' + project + '.conf'),
+        ('./templates/docker-compose/docker-compose.yml', './docker-compose.yml'),
+    ))
+
+    for from_path, to_path in configs:
+        file_change_and_move_with_callback_change(
+            from_path,
+            to_path,
+            file_change_project_mark,
+        )
+
+if __name__ == '__main__':
+    main()
