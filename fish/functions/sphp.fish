@@ -1,4 +1,5 @@
 function sphp --description "dismod another version php, and start version php on $argvs"
+    # validation
 	if test (count $argv) -ne 1 
 		echo 'Количество аргументов не равно 1'
 		return;
@@ -7,16 +8,22 @@ function sphp --description "dismod another version php, and start version php o
 	set phpVersion $argv[1]
 
 	if test (ls -la /etc/php/ | grep -c "$phpVersion") -lt 1
-		echo -e "Указанная версия php не установлена. \n сначала учтановите sudo apt install php$phpVersion"
+		echo -e "Указанная версия php не установлена. \n сначала установите sudo apt install php$phpVersion"
 		return;
 	end
 
-
-	for dir in (ls /etc/php)
-		sudo a2dismod php"$dir"
-	end
-
-	sudo a2enmod php"$phpVersion"
+    # php switch
 	sudo update-alternatives --set php /usr/bin/php"$phpVersion"
-	sudo systemctl restart apache2.service
+
+    # apache modes
+    set -l apache (which a2dismod)
+
+    if test -n "$apache"
+        for dir in (ls /etc/php)
+            sudo a2dismod php"$dir"
+        end
+
+        sudo a2enmod php"$phpVersion"
+        sudo systemctl restart apache2.service
+	end
 end
