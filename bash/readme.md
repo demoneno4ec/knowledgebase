@@ -36,5 +36,15 @@ ln -s $from $to
 guide
 https://tldp.org/
 
+Поиск файлов с размером больше заданого в байтах
+```shell
+find . -type f -size +1000000c ! -path "./.git*" ! -path "./vendor*"
+```
+
+Поиск файлов с размером больше заданого в байтах и вывод размера файла
+```shell
+find . -type f -size +1000000c ! -path "./.git*" ! -path "./vendor*" -exec du -sch {} +
+```
+
 
 #### [Навигация](../)
